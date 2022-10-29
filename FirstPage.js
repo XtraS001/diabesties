@@ -1,14 +1,16 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Image, Button } from 'react-native';
+import { TouchableOpacity } from 'react-native-web';
+import React, { useState } from 'react';
+import SignIn from "./SignIn";
+import LanguageTab from './LanguageTab';
 
 
 export default function FirstPage() {
+    const [activeTab, setActiveTab] = useState("EN");
+    
     return(
         <View style={styles.container}>
-            {/* <Text>Testing 1,2</Text> */}
-            {/* <Image
-               source={require('./assets/icon.png')}
-            /> */}
             <View
                 style={{
                     flex: 0.2,
@@ -37,12 +39,15 @@ export default function FirstPage() {
                 </Text>
             <Text style = { textStyles1.container
                 } > management and intervention </Text>
-            
+        
+            <LanguageTab activeTab={activeTab} setActiveTab={setActiveTab} />
+
             <Button 
                title='Sign In'
                color = '#6699CC'
                width = '283'
                height = '180'
+               
               />
             <Button 
                title='Create Account'
@@ -76,5 +81,3 @@ const textStyles1 =StyleSheet.create({
     //   flexDirection:
     },
   });
-
-  
