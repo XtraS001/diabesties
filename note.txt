@@ -1,0 +1,15 @@
+monitoring 
+
+exercise
+
+aws cloud architecture
+
+no on premise
+
+mention every use cases
+
+sns to doctor and paitents
+
+send walking steps, heart beat
+
+google fit api

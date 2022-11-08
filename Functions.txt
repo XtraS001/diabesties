@@ -1,0 +1,15 @@
+DiaBESTies
+
+Add reminder for patients for upcoming checkup and medications
+
+Record & monitor patients health conditions for eg blood glucose, blood pressure, carbo intake, calories intake.
+
+Add devices to help record health indicatiors like steps per day, 
+
+upload pictures to calculate calories intake
+
+connect patients, families members and doctors
+
+Dr can set medication plan(doses of insulin) and meal plan and activities for patients
+
+set appointments with drs
