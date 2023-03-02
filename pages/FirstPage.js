@@ -1,11 +1,24 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View, Image, Button } from "react-native";
-import { TouchableOpacity } from "react-native-web";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  Button,
+  Dimensions,
+  TouchableOpacity,
+} from "react-native";
+
 import React, { useState } from "react";
 // import SignIn from "../SignIn";
 import LanguageTab from "../LanguageTab";
 
-export default function FirstPage() {
+const width = Dimensions.get("screen").width;
+const componentWidth = width;
+const height = Dimensions.get("screen").height;
+const componentHeight = height;
+
+export default function FirstPage({ navigation }) {
   const [activeTab, setActiveTab] = useState("EN");
 
   return (
@@ -21,7 +34,7 @@ export default function FirstPage() {
           style={{ width: 35.55, height: 40.55 }}
         />
         <Text style={{ fontSize: 38, fontWeight: "bold", color: "#66CCFF" }}>
-          T-Manis
+          DiaBESTies
         </Text>
       </View>
       <Image
@@ -31,28 +44,34 @@ export default function FirstPage() {
       <Text style={styles.textStyles1}> Intelligent virtual health </Text>
       <Text style={styles.textStyles1}> coach for diabetes</Text>
       <Text style={styles.textStyles1}> management and intervention </Text>
-
       <LanguageTab activeTab={activeTab} setActiveTab={setActiveTab} />
 
-      <Button
+      <TouchableOpacity
+        style={styles.button}
+        // onPress={() => console.log("Sign In")}
+        onPress={() => navigation.navigate("SignIn")}
+      >
+        <Text style={styles.buttonText}>Sign In</Text>
+      </TouchableOpacity>
+
+      <View
         style={{
-          title: "Sign In",
-          color: "#6699CC",
-          borderColor: "black",
-          borderRadius: "30",
-          width: "283",
-          height: "180",
+          // backgroundColor: "white",
+          width: "100%",
+          height: 60,
+          alighSelf: "flex-start",
+          // position: "absolute",
+          top: componentHeight * 0.1,
         }}
-        title="Sign In"
-      />
-      <Button
-        title="Create Account"
-        //fontColor = '#6699CC'
-        backgroundColor="#FFFFFF"
-        borderColor="#6699CC"
-        width="283"
-        height="180"
-      />
+      ></View>
+
+      <TouchableOpacity
+        style={styles.button2}
+        // onPress={() => console.log("Create Account")}
+        onPress={() => navigation.navigate("SignUp")}
+      >
+        <Text style={styles.buttonText2}>Create Account</Text>
+      </TouchableOpacity>
     </View>
   );
 }
@@ -71,8 +90,44 @@ const styles = StyleSheet.create({
     color: "#999999",
     textAlign: "center",
   },
+  button: {
+    backgroundColor: "#6699CC",
+    borderRadius: 10,
+    padding: 10,
+    marginVertical: 10,
+    height: 50,
+    width: 334,
+    position: "absolute",
+    left: 40,
+    top: componentHeight * 0.7,
+  },
+  buttonText: {
+    color: "#fff",
+    fontSize: 16,
+    textAlign: "center",
+    // fontFamily: "Merriweather_400Regular"
+  },
 
-  signInStyle: {},
+  button2: {
+    backgroundColor: "white",
+    borderRadius: 10,
+    padding: 10,
+    marginVertical: 10,
+    height: 50,
+    width: 334,
+    position: "absolute",
+    left: 40,
+    top: componentHeight * 0.77,
+    borderRadius: 10,
+    borderColor: "#6699CC",
+    borderWidth: 2,
+  },
+  buttonText2: {
+    color: "#6699CC",
+    fontSize: 16,
+    textAlign: "center",
+    // fontFamily: "Merriweather_400Regular"
+  },
 });
 
 const textStyles1 = StyleSheet.create({

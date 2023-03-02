@@ -1,18 +1,13 @@
 import { StatusBar } from "expo-status-bar";
-import SignUp from "./pages/SignUp";
+import SignUp from "./pages/SignUp"
 import SignIn from "./pages/SignIn";
 import SignUpDetail from "./pages/SignUpDetail";
-import FirstPage from "./pages/FirstPage";
-import AccountCreated from "./pages/AccountCreated";
-import Home from "./pages/Home";
 
-import Navigation from "./Navigation";
-import IonIcon from "react-native-vector-icons/Ionicons";
+import IonIcon from 'react-native-vector-icons/Ionicons';
 import { StyleSheet, Text, View, Platform, Dimensions } from "react-native";
 
 export default function App() {
-  return <Home />;
-  // return <SignUp/>;
+  return <SignUpDetail/>;
 }
 
 const styles = StyleSheet.create({
@@ -24,5 +19,3 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
   },
 });
-
-// Deeplink
