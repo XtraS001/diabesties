@@ -11,19 +11,18 @@ import {
   Dimensions,
   TouchableOpacity,
 } from "react-native";
-import { Icon } from "@rneui/themed";
-import PickGender from "../component/PickGender";
+
 import BottomTabs from "../component/BottomTab";
-import Navigation from "../Navigation";
+
 const width = Dimensions.get("screen").width;
 const componentWidth = width;
 const height = Dimensions.get("screen").height;
 const componentHeight = height;
 
-export default function Home({ navigation }) {
+export default function Monitor({ navigation }) {
   return (
     <View style={styles.container}>
-      <Text>Hello Home</Text>
+      <Text>Hello Monitor</Text>
       <BottomTabs navigation={navigation}/>
       
     </View>

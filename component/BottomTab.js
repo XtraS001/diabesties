@@ -2,13 +2,13 @@ import React from "react";
 import { View, Text, TouchableOpacity, Dimensions } from "react-native";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import IonIcon from "react-native-vector-icons/Ionicons";
-
+import Navigation from "../Navigation";
 const width = Dimensions.get("screen").width;
 const componentWidth = width;
 const height = Dimensions.get("screen").height;
 const componentHeight = height;
 
-export default function BottomTabs() {
+export default function BottomTabs({ navigation }) {
   return (
     <View
       style={{
@@ -19,9 +19,16 @@ export default function BottomTabs() {
         justifyContent: "space-between",
       }}
     >
-      
-      <Icon icon="home-outline" text="Home" />
-      <Icon icon="bar-chart-outline" text="Monitor" />
+     
+     
+      <Icon
+        icon="home-outline"
+        text="Home"
+        navigation={navigation}
+        navigateTo="Home"
+      />
+      <Icon icon="bar-chart-outline" text="Monitor" navigation={navigation}
+        navigateTo="Monitor" />
       <Icon icon="newspaper-outline" text="Plan" />
       <Icon icon="people-outline" text="Contact" />
       <Icon icon="watch-outline" text="Devices" />
@@ -30,8 +37,9 @@ export default function BottomTabs() {
 }
 
 const Icon = (props) => (
-  <TouchableOpacity>
-    <View style={{backgroundColor:"lightblue", width:60}} >
+
+  <TouchableOpacity onPress={() => props.navigation.navigate(props.navigateTo)}>
+    <View style={{ backgroundColor: "lightblue", width: 60 }}>
       {/* <FontAwesome5
         name={props.icon}
         size={25}
@@ -48,7 +56,7 @@ const Icon = (props) => (
           alignSelf: "center",
         }}
       ></IonIcon>
-      <Text style={{textAlign:"center"}}>{props.text}</Text>
+      <Text style={{ textAlign: "center" }}>{props.text}</Text>
     </View>
   </TouchableOpacity>
 );
