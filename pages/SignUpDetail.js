@@ -129,6 +129,7 @@ export default function SignUpDetail({navigation}) {
         style={styles.button2}
         // onPress={() => console.log("Cancel")}
         onPress={() => navigation.navigate("FirstPage")}
+        // onPress={() => navigation.navigate("Home")}
       >
         <Text style={styles.buttonText2}>Cancel</Text>
       </TouchableOpacity>

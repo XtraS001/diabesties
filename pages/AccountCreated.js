@@ -88,7 +88,8 @@ export default function AccountCreated({ navigation }) {
       <TouchableOpacity
         style={styles.button}
         // onPress={console.log("Pressed signin")}
-        onPress={() => console.log("Create account")}
+        // onPress={() => console.log("Create account")}
+        onPress={() => navigation.navigate("Home")}
       >
         <Text style={styles.buttonText}>Get Started Now</Text>
       </TouchableOpacity>

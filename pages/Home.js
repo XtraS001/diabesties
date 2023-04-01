@@ -14,7 +14,6 @@ import {
 import { Icon } from "@rneui/themed";
 import PickGender from "../component/PickGender";
 import BottomTabs from "../component/BottomTab";
-import Navigation from "../Navigation";
 const width = Dimensions.get("screen").width;
 const componentWidth = width;
 const height = Dimensions.get("screen").height;

@@ -14,7 +14,7 @@ import Home from "./pages/Home";
 import Monitor from "./pages/Monitor";
 
 
-const Stack = createStackNavigator();
+// const Stack = createStackNavigator();
 
 export default function Navigation() {
   const Stack = createStackNavigator();
@@ -26,7 +26,7 @@ export default function Navigation() {
   return (
     <NavigationContainer>
       {/* <Stack.Navigator initialRouteName="FirstPage" screenOptions={screenOptions}> */}
-      <Stack.Navigator initialRouteName="Home" screenOptions={screenOptions}>
+      <Stack.Navigator initialRouteName="FirstPage" screenOptions={screenOptions}>
         <Stack.Screen name="FirstPage" component={FirstPage} />
         <Stack.Screen name="SignIn" component={SignIn} />
         <Stack.Screen name="SignUp" component={SignUp} />
