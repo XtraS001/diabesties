@@ -73,7 +73,10 @@ const DataCard = ({ dataType, dataValue }) => {
             fontSize: 16,
             fontWeight: "bold",
           }}
-        > {dataType} </Text>
+        >
+          {" "}
+          {dataType}{" "}
+        </Text>
         <Text
           style={{
             fontSize: 32,
@@ -88,9 +91,9 @@ const DataCard = ({ dataType, dataValue }) => {
 };
 
 export default function Monitor({ navigation }) {
-  console.log('useData',useData());
+  console.log("useData", useData());
   let [authUrl, isAuth, steps, latestHR] = useData()._3;
-  
+
   // let[TestTime] = useData()._4;
   // console.log('Testtime,', TestTime);
   const [activeTab, setActiveTab] = useState("Monitor");
@@ -126,7 +129,6 @@ export default function Monitor({ navigation }) {
   // }, []);
 
   useEffect(() => {
-    
     console.log("isAuth in useEffect", isAuth);
 
     if (isBool(isAuth)) {
@@ -160,7 +162,7 @@ export default function Monitor({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <HeaderTab/>
+      <HeaderTab />
       <View
         style={{
           justifyContent: "flex-start",
@@ -176,12 +178,16 @@ export default function Monitor({ navigation }) {
       {/* <Text>{dataValue}</Text>
       <Text>{steps}</Text> */}
       <DataCard dataType={"Steps"} dataValue={steps} />
-      <DataCard dataType={"Calorie"} dataValue={0} /> 
+      <DataCard dataType={"Calorie"} dataValue={0} />
       <DataCard dataType={"Heart Rate"} dataValue={latestHR} />
       <DataCard dataType={"SpO2"} dataValue={"98% "} />
       {/* <OpenURLButton url={authUrl}>Authored</OpenURLButton>
       <DataCard dataType={'Steps'} dataValue={'value'}/>  */}
-      <BottomTabs navigation={navigation} activeTab={activeTab} setActiveTab={setActiveTab} />
+      <BottomTabs
+        navigation={navigation}
+        activeTab={activeTab}
+        setActiveTab={setActiveTab}
+      />
     </View>
   );
 }

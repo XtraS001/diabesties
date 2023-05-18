@@ -6,7 +6,7 @@ const getAuthUrl = async () => {
     console.log("Try axios get url");
     // const response = await apiClient.get("/getAuthUrl");
     const response = await axios.get(
-      "https://diabesties.pagekite.me/api/getAuthUrl"
+      "https://mydiabesties.pagekite.me/api/getAuthUrl"
     );
 
     // console.log("axios response:", response.data);   // For index.js
@@ -26,10 +26,11 @@ const checkAuth = async () => {
   try {
     console.log("checkAuth in fitApi");
     const response = await axios.get(
-      "https://diabesties.pagekite.me/api/isAuth"
+      "https://mydiabesties.pagekite.me/api/isAuth"
     );
 
-    console.log("auth in fitapi:", response.data);
+    // console.log("auth in fitapi:", response.data);
+    // console.log("auth in fitapi:", response); // Done checking error
     if (response.data.success) {
       return true;
     } else {
@@ -37,7 +38,8 @@ const checkAuth = async () => {
       return false;
     }
   } catch (error) {
-    console.log("error checking auth", error.message);
+    // console.log("error checking auth", error.message);
+    console.log("error checking auth", error);
   }
 };
 
@@ -45,7 +47,7 @@ const getNumOfSteps = async () => {
   try {
     console.log("getsteps in app");
     const response = await axios.get(
-      "https://diabesties.pagekite.me/api/getSteps"
+      "https://mydiabesties.pagekite.me/api/getSteps"
     );
 
     console.log("steps in fitapi:", response.data.steps);
@@ -54,6 +56,23 @@ const getNumOfSteps = async () => {
     }
   } catch (error) {
     console.log("error getting steps", error.message);
+  }
+};
+
+// Get Latest Heart Rate
+const getLHeartRate = async () => {
+  try {
+    console.log("getsteps in app");
+    const response = await axios.get(
+      "https://mydiabesties.pagekite.me/api/getLHeartRate"
+    );
+
+    console.log("Heart rate in fitapi:", response.data.heartrate);
+    if (response.data.success) {
+      return response.data.heartrate;
+    }
+  } catch (error) {
+    console.log("error getting latest heart rate", error.message);
   }
 };
 
@@ -115,4 +134,5 @@ export default {
   getAuthUrl,
   getNumOfSteps,
   checkAuth,
+  getLHeartRate,
 };

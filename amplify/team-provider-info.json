@@ -1,0 +1,20 @@
+{
+  "staging": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-diabesties-staging-133039-authRole",
+      "UnauthRoleArn": "arn:aws:iam::977881168670:role/amplify-diabesties-staging-133039-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::977881168670:role/amplify-diabesties-staging-133039-authRole",
+      "Region": "ap-southeast-1",
+      "DeploymentBucketName": "amplify-diabesties-staging-133039-deployment",
+      "UnauthRoleName": "amplify-diabesties-staging-133039-unauthRole",
+      "StackName": "amplify-diabesties-staging-133039",
+      "StackId": "arn:aws:cloudformation:ap-southeast-1:977881168670:stack/amplify-diabesties-staging-133039/64fa8b50-d091-11ed-ba69-0a0cda4bb260",
+      "AmplifyAppId": "d1q26i7sd816aw"
+    },
+    "categories": {
+      "auth": {
+        "Diabesties": {}
+      }
+    }
+  }
+}

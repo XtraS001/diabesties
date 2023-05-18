@@ -7,7 +7,7 @@ const componentWidth = width;
 const height = Dimensions.get("screen").height;
 const componentHeight = height;
 
-export default function BottomTabs({ navigation }) {
+export default function BottomTabs({ navigation }, props) {
   return (
     <View
       style={{
@@ -15,7 +15,7 @@ export default function BottomTabs({ navigation }) {
         // marginHorizontal: 0,
         // flex: 1,
         //width: componentWidth,
-        backgroundColor: "lightblue",
+        backgroundColor: "#f2f2f2",
         justifyContent: "center", //x-axis
         position: "absolute",
         top: componentHeight * 0.8,
@@ -23,7 +23,7 @@ export default function BottomTabs({ navigation }) {
         // shadowOffset: { width: 0, height: -2000 },
         // shadowOpacity: 0.9,
         // shadowRadius: 200,
-        
+
         elevation: 2222,
       }}
     >
@@ -36,7 +36,7 @@ export default function BottomTabs({ navigation }) {
           // position: "absolute",
           // left:40,
 
-          backgroundColor: "lightblue",
+          backgroundColor: "#f2f2f2",
           // justifyContent: "center", //x-axis
         }}
       >
@@ -45,16 +45,20 @@ export default function BottomTabs({ navigation }) {
           text="Home"
           navigation={navigation}
           navigateTo="Home"
+          activeTab={props.activeTab }
+          setActiveTab={props.setActiveTab}
         />
         <Icon
           icon="bar-chart-outline"
           text="Monitor"
           navigation={navigation}
           navigateTo="Monitor"
+          activeTab={props.activeTab }
+          setActiveTab={props.setActiveTab}
         />
         <Icon icon="newspaper-outline" text="Plan" />
-        <Icon icon="people-outline" text="Contact" />
-        <Icon icon="watch-outline" text="Devices" />
+        {/* <Icon icon="people-outline" text="Contact" />
+        <Icon icon="watch-outline" text="Devices" /> */}
       </View>
     </View>
   );
@@ -62,7 +66,13 @@ export default function BottomTabs({ navigation }) {
 
 const Icon = (props) => (
   <TouchableOpacity onPress={() => props.navigation.navigate(props.navigateTo)}>
-    <View style={{ backgroundColor: "lightblue", width: componentWidth * 0.2 }}>
+    <View
+      style={{
+        backgroundColor: "#f2f2f2",
+        width: componentWidth * 0.333,
+        color: "yellow",
+      }}
+    >
       {/* <FontAwesome5
         name={props.icon}
         size={25}
@@ -77,7 +87,9 @@ const Icon = (props) => (
         style={{
           marginBottom: 3,
           alignSelf: "center",
+          color: props.activeTab === props.text ? "#6699CC" : "#999999",
         }}
+        // backgroundColor: props.activeTab === props.text ? "#6699CC" : "#FFFFFF",
       ></IonIcon>
       <Text style={{ textAlign: "center" }}>{props.text}</Text>
     </View>

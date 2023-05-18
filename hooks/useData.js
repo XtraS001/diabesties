@@ -5,7 +5,8 @@ const useData = async () => {
   const [authUrl, setAuthUrl] = useState({});
   const [isAuth, setIsAuth] = useState();
   const [steps, setSteps] = useState(0);
-  const [dataValue, setDataValue] = useState();
+  const [latestHR, setLatestHR] = useState(0); // Latest Heart Rate
+  // const [dataValue, setDataValue] = useState();
   console.log("usedata is called in usedata");
   // setDataValue(40);
   const getAuthUrl = async () => {
@@ -16,32 +17,26 @@ const useData = async () => {
   };
 
   const checkAuth = async () => {
-    let isAuth = await fitApi.checkAuth();
-    console.log("checkAuth is call in usedata");
-    setIsAuth(isAuth);
-    console.log('isAuth in usedata:', isAuth);
+    let isAuthenticated = await fitApi.checkAuth();
+    console.log("checkAuth is call in usedata", isAuthenticated);
+    setIsAuth(isAuthenticated);
+    console.log("isAuth in usedata:", isAuth);
   };
 
   const getSteps = async () => {
     let steps = await fitApi.getNumOfSteps();
 
     setSteps(steps);
+    console.log('Received Steps', steps);
   };
 
-  // const checkDataValue = async () => {
-  //   // console.log("checkeddatavalue is called");
-  //   // Sleep for 2 seconds for 2 times
-  //   for (let i = 0; i < 10; i++) {
-  //     await new Promise((resolve) => setTimeout(resolve, 2000));
-  //     console.log("sleep for 2 seconds");
-  //     setDataValue(i);
-  //   }
-  // };
+  // Get Latest Heart Rate
+  const getLatestHR = async () => {
+    let heartRate = await fitApi.getLHeartRate();
 
-  // useeffect to test changes in datValue
-  // useEffect(() => {
-  //   console.log("Datavalue in usedata:", dataValue);
-  // }, [dataValue]);
+    setLatestHR(heartRate);
+    console.log('Received Heart Rate', heartRate);
+  };
 
   useEffect(() => {
     console.log("line 45");
@@ -50,14 +45,32 @@ const useData = async () => {
     // checkDataValue();
   }, [isAuth]);
 
+  // useEffect(() => {
+  //   if (isAuth) {
+  //     getSteps();
+  //     getLatestHR();
+  //   }
+  //   else{}
+  // }, [isAuth]);
+
   useEffect(() => {
-    if (isAuth) {
-      getSteps();
-    }
-    console.log("line 55");
+    setInterval(() => {
+      if (isAuth) {
+        getSteps();
+        getLatestHR();
+      }
+      else{}
+    }, 3000);
+    
   }, [isAuth]);
-  // console.log('authurl in usedata:', authUrl);
-  return [authUrl, isAuth, steps, dataValue];
+  // console.log('authurl in :', authUrl);
+  return [
+    authUrl,
+    isAuth,
+    steps,
+    latestHR,
+    // dataValue
+  ];
 };
 
 export default useData;

@@ -11,7 +11,8 @@ import {
 
 import React, { useState } from "react";
 // import SignIn from "../SignIn";
-import LanguageTab from "../LanguageTab";
+// import LanguageTab from "../LanguageTab";
+import LanguageTab from "../component/LanguageTab";
 
 const width = Dimensions.get("screen").width;
 const componentWidth = width;

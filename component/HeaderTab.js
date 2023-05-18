@@ -26,7 +26,7 @@ export default function HeaderTab({ navigation }) {
         // marginHorizontal: 0,
         // flex: 1,
         //width: componentWidth,
-        // backgroundColor: "lightblue",
+        backgroundColor: "#F2F2F2",
         justifyContent: "center", //x-axis
         alignItems: "center", //y-axis
         // position: "absolute",
@@ -36,7 +36,7 @@ export default function HeaderTab({ navigation }) {
         // shadowOpacity: 0.9,
         // shadowRadius: 200,
 
-        elevation: 22,
+        elevation: 222,
       }}
     >
       <View
