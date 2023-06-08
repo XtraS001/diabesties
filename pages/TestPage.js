@@ -3,55 +3,56 @@ import { View, Text } from "react-native";
 import TestTime, { secondsValue } from "../component/TestTime";
 import { useEffect, useState } from "react";
 import RNFS from "react-native-fs";
+import { writeFile, readFile } from "../functions/csvFile";
+import readFile2 from "../functions/csvFile";
+import readFile3 from "../functions/csvFile";
+// import writeFile2 from "../functions/csvFile";
+import writeFile2 from "../functions/writeFile";
+import useData from "../hooks/useData";
+// import { writeFile } from "../functions/csvFile";
 
-const generateCSVContent = (variable1, variable2) => {
-  const headers = "Variable 1,Variable 2\n";
-  const row = `${variable1},${variable2}\n`;
+// const generateCSVContent = (variable1, variable2) => {
+//   const headers = "Variable 1,Variable 2\n";
+//   const row = `${variable1},${variable2}\n`;
 
-  return headers + row;
-};
+//   return headers + row;
+// };
 
-const saveCSVFile = async (variable1, variable2) => {
-  const csvContent = generateCSVContent(variable1, variable2);
-  const filePath = RNFS.DocumentDirectoryPath + "/data.csv";
-  console.log(RNFS.DocumentDirectoryPath);
-  // const filePath = ".." + "/data.csv";
+const variable1 = async () => {
+  let variable1 = await readFile3();
+  return variable1;
+}
 
-  try {
-    // await RNFS.writeFile(filePath, csvContent, "utf8");
-    // console.log("CSV file saved successfully:", filePath);
+export default function TestPage() {
+  const [seconds, setSeconds] = useState();
+  const [v1, setV1] = useState(80);
+  const [v2, setV2] = useState("hello");
 
-    // Example: Read the contents of the file
-    RNFS.readFile(filePath, "utf8")
-      .then((contents) => {
-        console.log("File contents:", contents);
-      })
-      .catch((error) => {
-        console.log("Error reading file:", error);
-      });
-  } catch (error) {
-    console.log("Error saving CSV file:", error);
-  }
-};
+  const [count, setCount] = useState(0);
+  // let variable2 = writeFile2();
 
-const TestPage = () => {
-  const [seconds, setSeconds] = useState(0);
-  const [v1, setV1] = useState(2);
-  const [v2, setV2] = useState("Hello");
-  useEffect(() => {
-    try {
-      saveCSVFile(v1, v2);
-      console.log("DOne save file");
-    } catch (error) {
-      console.log(error);
-    }
-  });
+  // let var1 = 'hi';
+  writeFile2(v1, v2);
+  // writeFile(v1, v2);
+
+  // let [var10, var7, var8, var9] = readFile2()._3;
+  // let [var10, var7, var8, var9] = readFile3()._3;
+  // let var5 = useData();
+  // let var6 = readFile3();
+  // console.log('var5', var5);
+  // console.log('var1', var1);
+  // console.log("var6", var6);
+  // writeFile(v1, v2r);
+
   return (
     <View>
-      <TestTime />
-      <Text>Hello WOrld</Text>
+      {/* <TestTime /> */}
+      <Text>Hello</Text>
+      {/* <Text>{var1}</Text> */}
+      {/* <Text>{var10}</Text> */}
+      {/* <Text>{var7}</Text> */}
     </View>
   );
-};
+}
 
-export default TestPage;
+// export default TestPage;

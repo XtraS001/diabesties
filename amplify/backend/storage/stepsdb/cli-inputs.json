@@ -1,0 +1,14 @@
+{
+  "resourceName": "stepsdb",
+  "tableName": "stepsdb",
+  "partitionKey": {
+    "fieldName": "UserID",
+    "fieldType": "string"
+  },
+  "sortKey": {
+    "fieldName": "Timestamp",
+    "fieldType": "number"
+  },
+  "gsi": [],
+  "triggerFunctions": []
+}

@@ -24,7 +24,7 @@ const getAuthUrl = async () => {
 
 const checkAuth = async () => {
   try {
-    console.log("checkAuth in fitApi");
+    // console.log("checkAuth in fitApi");
     const response = await axios.get(
       "https://mydiabesties.pagekite.me/api/isAuth"
     );
@@ -37,6 +37,7 @@ const checkAuth = async () => {
       console.log(response.data.message);
       return false;
     }
+
   } catch (error) {
     // console.log("error checking auth", error.message);
     console.log("error checking auth", error);
@@ -45,7 +46,7 @@ const checkAuth = async () => {
 
 const getNumOfSteps = async () => {
   try {
-    console.log("getsteps in app");
+    console.log("getsteps in fitapi");
     const response = await axios.get(
       "https://mydiabesties.pagekite.me/api/getSteps"
     );
@@ -62,7 +63,7 @@ const getNumOfSteps = async () => {
 // Get Latest Heart Rate
 const getLHeartRate = async () => {
   try {
-    console.log("getsteps in app");
+    console.log("gets latest heart rate in fitapi");
     const response = await axios.get(
       "https://mydiabesties.pagekite.me/api/getLHeartRate"
     );

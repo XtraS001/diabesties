@@ -32,6 +32,7 @@ async function signOut() {
 }
 
 export default function Home({ navigation }) {
+  console.log("start run Home");
   const [activeTab, setActiveTab] = useState("Home");
   return (
     <View style={styles.container}>

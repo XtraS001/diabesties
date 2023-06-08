@@ -4,8 +4,9 @@ import Home from "./pages/Home";
 import Monitor from "./pages/Monitor";
 import TestTime from "./component/TestTime";
 import TestPage from "./pages/TestPage";
+import TestPage2 from "./pages/TestPage2";
 import Navigation from "./Navigation";
-
+import React from 'react';
 import { StyleSheet, Text, View, Platform, Dimensions } from "react-native";
 
 import { Amplify } from "aws-amplify";
@@ -100,23 +101,23 @@ const customTheme = {
 
 const App = () => {
   // return <Navigation />;
-  return <TestPage />;
+  return (
+    // <React.StrictMode>
+      <Navigation />
+     
+    // </React.StrictMode>
+  );
+  // return<Monitor/>;
 };
 
-export default withAuthenticator(App, { signUpConfig, theme: customTheme });
-// export default App;
+// export default withAuthenticator(App, { signUpConfig, theme: customTheme });
+export default App;
 
 // export default function App() {
-//   // return <DeepLink/>;
-//   // return <FirstPage/>;
+
 //   // return <Testwebview/>;
 //   return <Navigation/>;
-//   // return <HeaderTab/>;
-//   // return <ConditionsBar/>;
-//   // return <BottomTabs/>;
-//   // return <SignUp/>;
-//   // return <AppStateExample/>;
-//   // return <MyComponent/>;
+
 // }
 
 const styles = StyleSheet.create({
