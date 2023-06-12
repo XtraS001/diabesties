@@ -30,15 +30,15 @@ export default function TestPage2() {
     // generateCSVContent();
     // useEffect(async () => {
     useEffect(() => {
-      async function fetchData() {
+      // async function fetchData() {
         // await writeFile(v1, v2);
         // let arr = await readFile();
         // console.log('arr', arr);
         // setVar1(arr[0]);
         // console.log('start set var1', var1);
         // setVar2(arr[1]);
-      }
-      fetchData();
+      // }
+      // fetchData();
       //   setVar3(arr[2]);
       // await setVar1(await readFile3()).then(setVar2(var1._3[0]));
       //   setVar1(readFile()[0]);

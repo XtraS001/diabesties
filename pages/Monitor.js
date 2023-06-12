@@ -98,7 +98,7 @@ function isBool(variable) {
 export default function Monitor({ navigation }) {
   // console.log("useData", useData());
   console.log("open monitor");
-  let [authUrl, isAuth, steps, latestHR] = useData()._3;
+  let [authUrl, isAuth, steps, latestHR, totalCal] = useData()._3;
   const [authUrl2, setAuthUrl] = useState(authUrl);
   const [isAuth2, setIsAuth] = useState(isAuth);
   console.log("in monitor", isAuth);
@@ -211,11 +211,12 @@ export default function Monitor({ navigation }) {
       {/* <Text>{dataValue}</Text>
       <Text>{steps}</Text> */}
       <DataCard dataType={"Steps"} dataValue={steps} />
-      <DataCard dataType={"Steps"} dataValue={steps2} />
-      <DataCard dataType={"Calorie"} dataValue={latestHR} />
-      <DataCard dataType={"Heart Rate"} dataValue={latestHR2} />
+      {/* <DataCard dataType={"Steps"} dataValue={steps2} /> */}
+      <DataCard dataType={"Calorie"} dataValue={totalCal} />
+      <DataCard dataType={"Heart Rate"} dataValue={latestHR} />
+      {/* <DataCard dataType={"Heart Rate"} dataValue={latestHR2} /> */}
       
-      <DataCard dataType={"SpO2"} dataValue={"98% "} />
+      <DataCard dataType={"SpO2"} dataValue={"0 "} />
       {/* <OpenURLButton url={authUrl}>Authored</OpenURLButton>
       <DataCard dataType={'Steps'} dataValue={'value'}/>  */}
       <BottomTabs

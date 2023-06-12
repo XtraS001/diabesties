@@ -1,58 +1,131 @@
-import React from "react";
-import { View, Text } from "react-native";
-import TestTime, { secondsValue } from "../component/TestTime";
-import { useEffect, useState } from "react";
-import RNFS from "react-native-fs";
-import { writeFile, readFile } from "../functions/csvFile";
-import readFile2 from "../functions/csvFile";
-import readFile3 from "../functions/csvFile";
-// import writeFile2 from "../functions/csvFile";
-import writeFile2 from "../functions/writeFile";
-import useData from "../hooks/useData";
-// import { writeFile } from "../functions/csvFile";
+// * @see AWS.DynamoDB.batchWriteItem
+// * @example Write to and delete from a table
+var params = {
+  RequestItems: {
+    "Table-1": [
+      {
+        DeleteRequest: {
+          Key: { HashKey: "someKey" },
+        },
+      },
+      {
+        PutRequest: {
+          Item: {
+            HashKey: "anotherKey",
+            NumAttribute: 1,
+            BoolAttribute: true,
+            ListAttribute: [1, "two", false],
+            MapAttribute: { foo: "bar" },
+          },
+        },
+      },
+    ],
+  },
+};
+// *
+// *  var documentClient = new AWS.DynamoDB.DocumentClient();
+// *
+// *  documentClient.batchWrite(params, function(err, data) {
+// *    if (err) console.log(err);
+// *    else console.log(data);
+// *  });
+// *
+// */
 
-// const generateCSVContent = (variable1, variable2) => {
-//   const headers = "Variable 1,Variable 2\n";
-//   const row = `${variable1},${variable2}\n`;
+// * @see AWS.DynamoDB.putItem
+// * @example Create a new item in a table
+// *  var params = {
+// *    TableName : 'Table',
+// *    Item: {
+// *       HashKey: 'haskey',
+// *       NumAttribute: 1,
+// *       BoolAttribute: true,
+// *       ListAttribute: [1, 'two', false],
+// *       MapAttribute: { foo: 'bar'},
+// *       NullAttribute: null
+// *    }
+// *  };
+// *
+// *  var documentClient = new AWS.DynamoDB.DocumentClient();
+// *
+// *  documentClient.put(params, function(err, data) {
+// *    if (err) console.log(err);
+// *    else console.log(data);
+// *  });
+// *
+// */
+// put: function(params, callback) {
+//  var operation = this.serviceClientOperationsMap['put'];
+//  return this.makeServiceRequest(operation, params, callback);
+// },
 
-//   return headers + row;
-// };
+var arr1 = [
+  { steps: 34, timeStampNanos: "1686330840000000000" },
+  { steps: 55, timeStampNanos: "1686330900000000000" },
+];
 
-const variable1 = async () => {
-  let variable1 = await readFile3();
-  return variable1;
-}
+var arr2 = [
+  { timeStampNanos: 1686330840, steps: 34 },
+  { timeStampNanos: 1686330900, steps: 55 },
+];
 
-export default function TestPage() {
-  const [seconds, setSeconds] = useState();
-  const [v1, setV1] = useState(80);
-  const [v2, setV2] = useState("hello");
+var arr3 = [
+  {
+    PutRequest: {
+      Item: { timeStampNanos: 1686330840, steps: 34 },
+    },
+  },
+  {
+    PutRequest: {
+      Item: { timeStampNanos: 1686330900, steps: 55 },
+    },
+  },
+];
 
-  const [count, setCount] = useState(0);
-  // let variable2 = writeFile2();
-
-  // let var1 = 'hi';
-  writeFile2(v1, v2);
-  // writeFile(v1, v2);
-
-  // let [var10, var7, var8, var9] = readFile2()._3;
-  // let [var10, var7, var8, var9] = readFile3()._3;
-  // let var5 = useData();
-  // let var6 = readFile3();
-  // console.log('var5', var5);
-  // console.log('var1', var1);
-  // console.log("var6", var6);
-  // writeFile(v1, v2r);
-
-  return (
-    <View>
-      {/* <TestTime /> */}
-      <Text>Hello</Text>
-      {/* <Text>{var1}</Text> */}
-      {/* <Text>{var10}</Text> */}
-      {/* <Text>{var7}</Text> */}
-    </View>
-  );
-}
-
-// export default TestPage;
+var arr4 = [
+  {
+    steps: 34,
+    timeStampNanos: 1686330840,
+    userId: "ap-southeast-1:952276e0-3fad-4ccf-b8b1-2f9cf1d410e4",
+  },
+  {
+    steps: 24,
+    timeStampNanos: 1686330890,
+    userId: "ap-southeast-1:952276e0-3fad-4ccf-b8b1-2f9cf1d410e4",
+  },
+  {
+    steps: 55,
+    timeStampNanos: 1686330900,
+    userId: "ap-southeast-1:952276e0-3fad-4ccf-b8b1-2f9cf1d410e4",
+  },
+  {
+    steps: 24,
+    timeStampNanos: 1686330999,
+    userId: "ap-southeast-1:952276e0-3fad-4ccf-b8b1-2f9cf1d410e4",
+  },
+  {
+    steps: 34,
+    timeStampNanos: 1686331080,
+    userId: "ap-southeast-1:952276e0-3fad-4ccf-b8b1-2f9cf1d410e4",
+  },
+  {
+    steps: 21,
+    timeStampNanos: 1686331140,
+    userId: "ap-southeast-1:952276e0-3fad-4ccf-b8b1-2f9cf1d410e4",
+  },
+  {
+    steps: 20,
+    timeStampNanos: 1686331440,
+    userId: "ap-southeast-1:952276e0-3fad-4ccf-b8b1-2f9cf1d410e4",
+  },
+  {
+    steps: 34,
+    timeStampNanos: 1686339940,
+    userId: "ap-southeast-1:952276e0-3fad-4ccf-b8b1-2f9cf1d410e4",
+  },
+  {
+    steps: 34,
+    timeStampNanos: 1686339945,
+    userId: "ap-southeast-1:952276e0-3fad-4ccf-b8b1-2f9cf1d410e4",
+  },
+];

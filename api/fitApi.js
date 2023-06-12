@@ -77,6 +77,41 @@ const getLHeartRate = async () => {
   }
 };
 
+// Get Latest Heart Rate
+const getTotalCal= async () => {
+  try {
+    console.log("gets latest heart rate in fitapi");
+    const response = await axios.get(
+      "https://mydiabesties.pagekite.me/api/getTotalCal"
+    );
+
+    console.log("Total Cal in fitapi:", response.data.totalCalories);
+    if (response.data.success) {
+      return response.data.totalCalories;
+    }
+  } catch (error) {
+    console.log("error getting total Cal Burned", error.message);
+  }
+};
+
+// Get All Steps Data for sync
+const getAllSteps= async () => {
+  try {
+    console.log("gets all steps data in fitapi");
+    const response = await axios.get(
+      "https://mydiabesties.pagekite.me/api/getSyncSteps"
+    );
+
+    console.log("ALl steps:", response.data.syncSteps);
+    if (response.data.success) {
+      // return response.data.syncSteps;
+      return response.data.syncSteps;
+    }
+  } catch (error) {
+    console.log("error getting all steps", error.message);
+  }
+};
+
 // const getAll = async () => {
 //   try {
 //     const response = await apiClient.get("/news");
@@ -136,4 +171,6 @@ export default {
   getNumOfSteps,
   checkAuth,
   getLHeartRate,
+  getTotalCal,
+  getAllSteps,
 };

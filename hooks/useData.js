@@ -7,6 +7,8 @@ const useData = async () => {
   const [isAuth, setIsAuth] = useState();
   const [steps, setSteps] = useState(0);
   const [latestHR, setLatestHR] = useState(0); // Latest Heart Rate
+  const [totalCal, setTotalCal] = useState(0); // Total Calories burned
+
   // const [dataValue, setDataValue] = useState();
   console.log("usedata is called in usedata");
   // setDataValue(40);
@@ -43,6 +45,16 @@ const useData = async () => {
     return heartRate;
   };
 
+  // Get Latest Heart Rate
+  const getTotalCal = async () => {
+    console.log("start getTotalCal in usedata");
+    let totalCal = await fitApi.getTotalCal();
+
+    setTotalCal(totalCal);
+    // console.log("Received Heart Rate", heartRate);
+    return totalCal;
+  };
+
   useEffect(() => {
     console.log("line 45");
     getAuthUrl();
@@ -53,7 +65,7 @@ const useData = async () => {
   useEffect(() => {
     const interval = setInterval(() => {
       checkAuth();
-      clearInterval
+      clearInterval;
     }, 10000);
     // console.log("Changes in isAuth:", isAuth);
   });
@@ -93,7 +105,8 @@ const useData = async () => {
         console.log("Authenticated");
         let steps = await getSteps();
         let heartRate = await getLatestHR();
-        console.log("steps", steps, "latestHR", heartRate);
+        let totalCal = await getTotalCal();
+        console.log("steps", steps, "latestHR", heartRate, "totalCal", totalCal);
         writeFile(steps, heartRate);
         // writeFile(500, 104);
       }
@@ -105,6 +118,7 @@ const useData = async () => {
     isAuth,
     steps,
     latestHR,
+    totalCal,
     // dataValue
   ];
 };

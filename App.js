@@ -4,7 +4,8 @@ import Home from "./pages/Home";
 import Monitor from "./pages/Monitor";
 import TestTime from "./component/TestTime";
 import TestPage from "./pages/TestPage";
-import TestPage2 from "./pages/TestPage2";
+
+import TestPage3 from "./pages/TestPage3";
 import Navigation from "./Navigation";
 import React from 'react';
 import { StyleSheet, Text, View, Platform, Dimensions } from "react-native";
@@ -103,15 +104,16 @@ const App = () => {
   // return <Navigation />;
   return (
     // <React.StrictMode>
-      <Navigation />
+      // <Navigation />
+      <TestPage3/>
      
     // </React.StrictMode>
   );
   // return<Monitor/>;
 };
 
-// export default withAuthenticator(App, { signUpConfig, theme: customTheme });
-export default App;
+export default withAuthenticator(App, { signUpConfig, theme: customTheme });
+// export default App;
 
 // export default function App() {
 

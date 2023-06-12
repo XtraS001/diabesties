@@ -9,14 +9,24 @@
       "UnauthRoleName": "amplify-diabesties-staging-133039-unauthRole",
       "StackName": "amplify-diabesties-staging-133039",
       "StackId": "arn:aws:cloudformation:ap-southeast-1:977881168670:stack/amplify-diabesties-staging-133039/64fa8b50-d091-11ed-ba69-0a0cda4bb260",
-      "AmplifyAppId": "d1q26i7sd816aw"
+      "AmplifyAppId": "d1q26i7sd816aw",
+      "APIGatewayAuthURL": "https://s3.amazonaws.com/amplify-diabesties-staging-133039-deployment/amplify-cfn-templates/api/APIGatewayAuthStack.json"
     },
     "categories": {
       "auth": {
         "Diabesties": {}
       },
       "function": {
-        "stepsFunction": {}
+        "stepsFunction": {
+          "deploymentBucketName": "amplify-diabesties-staging-133039-deployment",
+          "s3Key": "amplify-builds/stepsFunction-4a6861446565595a6e67-build.zip"
+        }
+      },
+      "storage": {
+        "stepsdb": {}
+      },
+      "api": {
+        "stepsApi": {}
       }
     }
   }

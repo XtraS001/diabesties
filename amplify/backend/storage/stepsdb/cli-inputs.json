@@ -2,11 +2,11 @@
   "resourceName": "stepsdb",
   "tableName": "stepsdb",
   "partitionKey": {
-    "fieldName": "UserID",
+    "fieldName": "userId",
     "fieldType": "string"
   },
   "sortKey": {
-    "fieldName": "Timestamp",
+    "fieldName": "timeStampNanos",
     "fieldType": "number"
   },
   "gsi": [],
