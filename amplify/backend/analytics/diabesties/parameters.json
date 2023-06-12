@@ -1,0 +1,21 @@
+{
+    "appName": "diabesties",
+    "roleName": "pinpointLambdaRolea9427faf",
+    "cloudformationPolicyName": "cloudformationPolicya9427faf",
+    "cloudWatchPolicyName": "cloudWatchPolicya9427faf",
+    "pinpointPolicyName": "pinpointPolicya9427faf",
+    "authPolicyName": "pinpoint_amplify_a9427faf",
+    "unauthPolicyName": "pinpoint_amplify_a9427faf",
+    "authRoleName": {
+        "Ref": "AuthRoleName"
+    },
+    "unauthRoleName": {
+        "Ref": "UnauthRoleName"
+    },
+    "authRoleArn": {
+        "Fn::GetAtt": [
+            "AuthRole",
+            "Arn"
+        ]
+    }
+}

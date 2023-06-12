@@ -27,6 +27,21 @@
       },
       "api": {
         "stepsApi": {}
+      },
+      "analytics": {
+        "diabesties": {},
+        "Pinpoint": {
+          "Name": "diabesties-staging",
+          "Id": "78344f3115cc409aa4755db551054ed6",
+          "Region": "ap-southeast-1"
+        }
+      },
+      "notifications": {
+        "Pinpoint": {
+          "Name": "diabesties-staging",
+          "Id": "78344f3115cc409aa4755db551054ed6",
+          "Region": "ap-southeast-1"
+        }
       }
     }
   }

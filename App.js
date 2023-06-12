@@ -10,7 +10,7 @@ import Navigation from "./Navigation";
 import React from 'react';
 import { StyleSheet, Text, View, Platform, Dimensions } from "react-native";
 
-import { Amplify } from "aws-amplify";
+import { Amplify, Notifications } from "aws-amplify";
 import awsconfig from "./src/aws-exports";
 import { withAuthenticator, AmplifyTheme } from "aws-amplify-react-native";
 import { Auth } from "aws-amplify";
@@ -36,7 +36,14 @@ async function signUp() {
   }
 }
 
-Amplify.configure(awsconfig);
+// Amplify.configure(awsconfig);
+
+Amplify.configure({
+  ...awsconfig,
+  Analytics: {
+    disabled: true,
+  },
+});
 
 const signUpConfig = {
   header: "My Customized Sign Up",
