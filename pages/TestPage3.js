@@ -9,7 +9,7 @@ import {
 import fitApi from "../api/fitApi";
 import { useEffect, useState } from "react";
 import { Amplify, API } from "aws-amplify";
-
+import PushNotification from "react-native-push-notification";
 // import config from "./aws-exports";
 
 export default function TestPage3() {
@@ -143,6 +143,22 @@ export default function TestPage3() {
 
     console.log("Button3 Pressed!");
   };
+  const handleNotification = async () => {
+    // Your logic or actions when the button is pressed
+    try {
+      PushNotification.localNotification({
+        channelId:"test-channel",
+        title:"You clicked on" ,
+        message:'Success!!',
+        id:1//if not defined then new notification is created on each click else it append new notification in previous one
+      });
+  
+    } catch (e) {
+      console.log("err getting query data", e);
+    }
+
+    console.log("Button4 Pressed!");
+  };
   //   let var2 = var1._3[0];
   // console.log("var1", var1);
   //   writeFile2(v1, v2);
@@ -154,6 +170,7 @@ export default function TestPage3() {
       <Button title="Press Meee 2 Post" onPress={handleButtonPress} />
       <Button title="Press Meee 2 Put" onPress={handleButtonPress2} />
       <Button title="Press Meee to get query" onPress={handleButtonPress3} />
+      <Button title="Get Notification" onPress={handleNotification} />
       {/* </form> */}
       <Text>Hello</Text>
       <Text>{allSteps}</Text>
