@@ -42,6 +42,9 @@
           "Id": "78344f3115cc409aa4755db551054ed6",
           "Region": "ap-southeast-1"
         }
+      },
+      "analytics": {
+        "diabesties": {}
       }
     }
   }

@@ -7,14 +7,14 @@ import TestPage from "./pages/TestPage";
 
 import TestPage3 from "./pages/TestPage3";
 import Navigation from "./Navigation";
-import React from 'react';
+import React, { useEffect } from "react";
 import { StyleSheet, Text, View, Platform, Dimensions } from "react-native";
 
 import { Amplify, Notifications } from "aws-amplify";
 import awsconfig from "./src/aws-exports";
 import { withAuthenticator, AmplifyTheme } from "aws-amplify-react-native";
 import { Auth } from "aws-amplify";
-
+import PushNotification from "react-native-push-notification";
 async function signUp() {
   try {
     const { user } = await Auth.signUp({
@@ -107,13 +107,23 @@ const customTheme = {
   },
 };
 
+const createChannels = () => {
+  PushNotification.createChannel({
+    channelId: "test-channel",
+    channelName: "Test Channel",
+  });
+};
 const App = () => {
   // return <Navigation />;
+  // Create a useeffect to run createchannels
+  useEffect(() => {
+    createChannels();
+  }, []);
   return (
     // <React.StrictMode>
-      // <Navigation />
-      <TestPage3/>
-     
+    // <Navigation />
+    <TestPage3 />
+
     // </React.StrictMode>
   );
   // return<Monitor/>;

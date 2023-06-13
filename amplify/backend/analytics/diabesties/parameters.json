@@ -1,11 +1,11 @@
 {
     "appName": "diabesties",
-    "roleName": "pinpointLambdaRolea9427faf",
-    "cloudformationPolicyName": "cloudformationPolicya9427faf",
-    "cloudWatchPolicyName": "cloudWatchPolicya9427faf",
-    "pinpointPolicyName": "pinpointPolicya9427faf",
-    "authPolicyName": "pinpoint_amplify_a9427faf",
-    "unauthPolicyName": "pinpoint_amplify_a9427faf",
+    "roleName": "pinpointLambdaRole68694e18",
+    "cloudformationPolicyName": "cloudformationPolicy68694e18",
+    "cloudWatchPolicyName": "cloudWatchPolicy68694e18",
+    "pinpointPolicyName": "pinpointPolicy68694e18",
+    "authPolicyName": "pinpoint_amplify_68694e18",
+    "unauthPolicyName": "pinpoint_amplify_68694e18",
     "authRoleName": {
         "Ref": "AuthRoleName"
     },
