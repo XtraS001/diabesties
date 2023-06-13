@@ -36,7 +36,14 @@ async function signUp() {
   }
 }
 
-Amplify.configure(awsconfig);
+// Amplify.configure(awsconfig);
+
+Amplify.configure({
+  ...awsconfig,
+  Analytics: {
+    disabled: true,
+  },
+});
 
 const signUpConfig = {
   header: "My Customized Sign Up",

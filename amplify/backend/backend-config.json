@@ -1,5 +1,10 @@
 {
-  "analytics": {},
+  "analytics": {
+    "diabesties": {
+      "providerPlugin": "awscloudformation",
+      "service": "Pinpoint"
+    }
+  },
   "api": {
     "stepsApi": {
       "dependsOn": [
