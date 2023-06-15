@@ -56,7 +56,7 @@ export default function BottomTabs({ navigation }, props) {
           activeTab={props.activeTab }
           setActiveTab={props.setActiveTab}
         />
-        <Icon icon="newspaper-outline" text="Plan" />
+        {/* <Icon icon="newspaper-outline" text="Plan" /> */}
         {/* <Icon icon="people-outline" text="Contact" />
         <Icon icon="watch-outline" text="Devices" /> */}
       </View>

@@ -221,10 +221,10 @@ const generateCSVContent = async (variable1, variable2, hour, minute) => {
         let X = inputArray[i];
         if (X === undefined) {
           // if (typeof inputData[i].toString() === 'undefined') {
-          console.log("myinput is undefined", readArray[i]);
+          // console.log("myinput is undefined", readArray[i]);
           inputData[i] = readArray[i];
         } else {
-          console.log("myinput is defined");
+          // console.log("myinput is defined");
           inputData[i] = inputArray[i];
         }
       }

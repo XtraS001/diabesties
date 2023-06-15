@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "943487317292",
+    "project_id": "testproject-340812",
+    "storage_bucket": "testproject-340812.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:943487317292:android:a27c5f435e0fc9397fe889",
+        "android_client_info": {
+          "package_name": "com.diabesties"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "943487317292-0acg66rkabv0q1f0j5enr6vu66sdd9k8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBgHfe0klLJUptN1plo7siUGtjiwqw18L8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "943487317292-0acg66rkabv0q1f0j5enr6vu66sdd9k8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

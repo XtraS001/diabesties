@@ -31,8 +31,8 @@ export default function TestPage3() {
   ];
 
   var arr1 = [
-    { steps: 34, timeStampNanos: "1686330840000000000" },
-    { steps: 55, timeStampNanos: "1686330900000000000" },
+    { steps: 99, timeStampNanos: "1686330840000000000" },
+    { steps: 99, timeStampNanos: "1686330900000000000" },
   ];
 
   var arr2 = arr1.map((item) => {
@@ -50,8 +50,8 @@ export default function TestPage3() {
   });
 
   var obj1 = {
-    steps: 34,
-    timeStampNanos: 1686339945,
+    // steps: 99,
+    timeStampNanos: 1686339946,
   };
 
   console.log("arr2:", arr2);
@@ -69,7 +69,7 @@ export default function TestPage3() {
       console.log("All steps:", allSteps);
       console.log("all steps item", allSteps[0].timeStampNanos);
     }
-    fetchData();
+    // fetchData();
   });
 
   console.log("run testpage3");
@@ -170,7 +170,7 @@ export default function TestPage3() {
       <Button title="Press Meee 2 Post" onPress={handleButtonPress} />
       <Button title="Press Meee 2 Put" onPress={handleButtonPress2} />
       <Button title="Press Meee to get query" onPress={handleButtonPress3} />
-      <Button title="Get Notification" onPress={handleNotification} />
+      <Button title="Get Notificationssss" onPress={handleNotification} />
       {/* </form> */}
       <Text>Hello</Text>
       <Text>{allSteps}</Text>

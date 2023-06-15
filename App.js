@@ -141,11 +141,12 @@ export default withAuthenticator(App, { signUpConfig, theme: customTheme });
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    // flex: 1,
     // paddingTop: "10%",
-    backgroundColor: "#fff",
+    // backgroundColor: "#fff",
+    backgroundColor: "blue",
     // alignItems: 'center',
-    justifyContent: "flex-start",
+    // justifyContent: "flex-start",
   },
 });
 
