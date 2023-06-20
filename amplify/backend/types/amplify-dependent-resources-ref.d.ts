@@ -1,13 +1,11 @@
 export type AmplifyDependentResourcesAttributes = {
-  "analytics": {
-    "diabesties": {
-      "Id": "string",
-      "Region": "string",
-      "appName": "string"
-    }
-  },
   "api": {
-    "stepsApi": {
+    "datasApi": {
+      "ApiId": "string",
+      "ApiName": "string",
+      "RootUrl": "string"
+    },
+    "tokensApi": {
       "ApiId": "string",
       "ApiName": "string",
       "RootUrl": "string"
@@ -25,7 +23,14 @@ export type AmplifyDependentResourcesAttributes = {
     }
   },
   "function": {
-    "stepsFunction": {
+    "datasFunction": {
+      "Arn": "string",
+      "LambdaExecutionRole": "string",
+      "LambdaExecutionRoleArn": "string",
+      "Name": "string",
+      "Region": "string"
+    },
+    "tokensFunction": {
       "Arn": "string",
       "LambdaExecutionRole": "string",
       "LambdaExecutionRoleArn": "string",
@@ -34,7 +39,7 @@ export type AmplifyDependentResourcesAttributes = {
     }
   },
   "storage": {
-    "stepsdb": {
+    "datasdb": {
       "Arn": "string",
       "Name": "string",
       "PartitionKeyName": "string",
@@ -42,6 +47,14 @@ export type AmplifyDependentResourcesAttributes = {
       "Region": "string",
       "SortKeyName": "string",
       "SortKeyType": "string",
+      "StreamArn": "string"
+    },
+    "tokensdb": {
+      "Arn": "string",
+      "Name": "string",
+      "PartitionKeyName": "string",
+      "PartitionKeyType": "string",
+      "Region": "string",
       "StreamArn": "string"
     }
   }

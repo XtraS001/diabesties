@@ -1,9 +1,9 @@
 {
   "version": 1,
   "paths": {
-    "/steps": {
-      "name": "/steps",
-      "lambdaFunction": "stepsFunction",
+    "/datas": {
+      "name": "/datas",
+      "lambdaFunction": "datasFunction",
       "permissions": {
         "setting": "private",
         "auth": [

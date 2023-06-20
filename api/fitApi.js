@@ -44,11 +44,14 @@ const checkAuth = async () => {
   }
 };
 
-const getNumOfSteps = async () => {
+// const getNumOfSteps = async () => {
+const getNumOfSteps = async (refreshToken) => {
   try {
     console.log("getsteps in fitapi");
+    const url = "https://mydiabesties.pagekite.me/api/getSteps/?refreshToken="+refreshToken;
     const response = await axios.get(
-      "https://mydiabesties.pagekite.me/api/getSteps"
+      // "https://mydiabesties.pagekite.me/api/getSteps"
+      url
     );
 
     console.log("steps in fitapi:", response.data.steps);
@@ -61,11 +64,13 @@ const getNumOfSteps = async () => {
 };
 
 // Get Latest Heart Rate
-const getLHeartRate = async () => {
+const getLHeartRate = async (refreshToken) => {
   try {
     console.log("gets latest heart rate in fitapi");
+    const url = "https://mydiabesties.pagekite.me/api/getLHeartRate/?refreshToken="+refreshToken;
     const response = await axios.get(
-      "https://mydiabesties.pagekite.me/api/getLHeartRate"
+      // "https://mydiabesties.pagekite.me/api/getLHeartRate/?refreshToken="+refreshToken;
+      url
     );
 
     console.log("Heart rate in fitapi:", response.data.heartrate);
@@ -78,11 +83,13 @@ const getLHeartRate = async () => {
 };
 
 // Get Latest Heart Rate
-const getTotalCal= async () => {
+const getTotalCal= async (refreshToken) => {
   try {
-    console.log("gets latest heart rate in fitapi");
+    console.log("gets total Cal in fitapi");
+    const url = "https://mydiabesties.pagekite.me/api/getTotalCal/?refreshToken="+refreshToken;
     const response = await axios.get(
-      "https://mydiabesties.pagekite.me/api/getTotalCal"
+      // "https://mydiabesties.pagekite.me/api/getTotalCal/?refreshToken="
+      url
     );
 
     console.log("Total Cal in fitapi:", response.data.totalCalories);
@@ -109,6 +116,43 @@ const getAllSteps= async () => {
     }
   } catch (error) {
     console.log("error getting all steps", error.message);
+  }
+};
+
+// Get Refresh Token
+const getRT= async () => {
+  try {
+    console.log("gets RT in fitapi");
+    const response = await axios.get(
+      "https://mydiabesties.pagekite.me/api/getRT"
+    );
+
+    console.log("refresh token:", response.data.RT);
+    if (response.data.success) {
+      // return response.data.syncSteps;
+      return response.data.RT;
+      // return response.data.RT;
+    }
+  } catch (error) {
+    console.log("error getting rt", error.message);
+  }
+};
+
+// Get Refresh Token
+const removeRT= async () => {
+  try {
+    console.log("remove RT in fitapi");
+    const response = await axios.get(
+      "https://mydiabesties.pagekite.me/api/removeRT"
+    );
+
+    // console.log("ALl steps:", response.data.syncSteps);
+    if (response.data.success) {
+      // return response.data.syncSteps;
+      return response.data;
+    }
+  } catch (error) {
+    console.log("error getting rt", error.message);
   }
 };
 
@@ -173,4 +217,6 @@ export default {
   getLHeartRate,
   getTotalCal,
   getAllSteps,
+  getRT,
+  removeRT,
 };

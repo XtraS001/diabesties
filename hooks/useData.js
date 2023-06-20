@@ -14,7 +14,6 @@ const useData = async () => {
   // setDataValue(40);
   const getAuthUrl = async () => {
     const url = await fitApi.getAuthUrl();
-    console.log("url:", url);
     console.log("authUrl:", authUrl);
     setAuthUrl(url);
   };

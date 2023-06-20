@@ -16,13 +16,13 @@
     "s3Key": {
       "Type": "String"
     },
-    "storagestepsdbName": {
+    "storagedatasdbName": {
       "Type": "String",
-      "Default": "storagestepsdbName"
+      "Default": "storagedatasdbName"
     },
-    "storagestepsdbArn": {
+    "storagedatasdbArn": {
       "Type": "String",
-      "Default": "storagestepsdbArn"
+      "Default": "storagedatasdbArn"
     }
   },
   "Conditions": {
@@ -55,12 +55,12 @@
         "FunctionName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "stepsFunction",
+            "datasFunction",
             {
               "Fn::Join": [
                 "",
                 [
-                  "stepsFunction",
+                  "datasFunction",
                   "-",
                   {
                     "Ref": "env"
@@ -97,12 +97,12 @@
         "RoleName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "diabestiesLambdaRole4309480a",
+            "diabestiesLambdaRolec99635f9",
             {
               "Fn::Join": [
                 "",
                 [
-                  "diabestiesLambdaRole4309480a",
+                  "diabestiesLambdaRolec99635f9",
                   "-",
                   {
                     "Ref": "env"
@@ -182,14 +182,14 @@
               ],
               "Resource": [
                 {
-                  "Ref": "storagestepsdbArn"
+                  "Ref": "storagedatasdbArn"
                 },
                 {
                   "Fn::Join": [
                     "/",
                     [
                       {
-                        "Ref": "storagestepsdbArn"
+                        "Ref": "storagedatasdbArn"
                       },
                       "index/*"
                     ]

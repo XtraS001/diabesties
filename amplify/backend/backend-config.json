@@ -1,12 +1,7 @@
 {
-  "analytics": {
-    "diabesties": {
-      "providerPlugin": "awscloudformation",
-      "service": "Pinpoint"
-    }
-  },
+  "analytics": {},
   "api": {
-    "stepsApi": {
+    "datasApi": {
       "dependsOn": [
         {
           "attributes": [
@@ -14,7 +9,21 @@
             "Arn"
           ],
           "category": "function",
-          "resourceName": "stepsFunction"
+          "resourceName": "datasFunction"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "API Gateway"
+    },
+    "tokensApi": {
+      "dependsOn": [
+        {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "tokensFunction"
         }
       ],
       "providerPlugin": "awscloudformation",
@@ -54,7 +63,7 @@
     }
   },
   "function": {
-    "stepsFunction": {
+    "datasFunction": {
       "build": true,
       "dependsOn": [
         {
@@ -67,7 +76,26 @@
             "Arn"
           ],
           "category": "storage",
-          "resourceName": "stepsdb"
+          "resourceName": "datasdb"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "tokensFunction": {
+      "build": true,
+      "dependsOn": [
+        {
+          "attributeEnvMap": {
+            "Arn": "TABLE_ARN",
+            "Name": "TABLE_NAME"
+          },
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "storage",
+          "resourceName": "tokensdb"
         }
       ],
       "providerPlugin": "awscloudformation",
@@ -75,25 +103,45 @@
     }
   },
   "parameters": {
-    "AMPLIFY_function_stepsFunction_deploymentBucketName": {
+    "AMPLIFY_function_datasFunction_deploymentBucketName": {
       "usedBy": [
         {
           "category": "function",
-          "resourceName": "stepsFunction"
+          "resourceName": "datasFunction"
         }
       ]
     },
-    "AMPLIFY_function_stepsFunction_s3Key": {
+    "AMPLIFY_function_datasFunction_s3Key": {
       "usedBy": [
         {
           "category": "function",
-          "resourceName": "stepsFunction"
+          "resourceName": "datasFunction"
+        }
+      ]
+    },
+    "AMPLIFY_function_tokensFunction_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "tokensFunction"
+        }
+      ]
+    },
+    "AMPLIFY_function_tokensFunction_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "tokensFunction"
         }
       ]
     }
   },
   "storage": {
-    "stepsdb": {
+    "datasdb": {
+      "providerPlugin": "awscloudformation",
+      "service": "DynamoDB"
+    },
+    "tokensdb": {
       "providerPlugin": "awscloudformation",
       "service": "DynamoDB"
     }

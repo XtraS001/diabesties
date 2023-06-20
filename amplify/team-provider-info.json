@@ -17,19 +17,22 @@
         "Diabesties": {}
       },
       "function": {
-        "stepsFunction": {
+        "tokensFunction": {
           "deploymentBucketName": "amplify-diabesties-staging-133039-deployment",
-          "s3Key": "amplify-builds/stepsFunction-4a6861446565595a6e67-build.zip"
+          "s3Key": "amplify-builds/tokensFunction-4b49664c54355072464e-build.zip"
+        },
+        "datasFunction": {
+          "deploymentBucketName": "amplify-diabesties-staging-133039-deployment",
+          "s3Key": "amplify-builds/datasFunction-636552337a7a4f794e2b-build.zip"
         }
       },
       "storage": {
-        "stepsdb": {}
+        "tokensdb": {},
+        "datasdb": {}
       },
       "api": {
-        "stepsApi": {}
-      },
-      "analytics": {
-        "diabesties": {}
+        "tokensApi": {},
+        "datasApi": {}
       }
     }
   }
