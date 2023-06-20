@@ -24,6 +24,7 @@ import TestTime from "../component/TestTime"; // Testing data updating
 import { writeFile, readFile } from "../functions/csvFile";
 import fitApi from "../api/fitApi";
 import { API } from "aws-amplify";
+
 // import { Alert } from "react-native";
 
 const width = Dimensions.get("screen").width;
@@ -98,13 +99,13 @@ export default function Monitor({ navigation }) {
   // console.log("useData", useData());
   console.log("open monitor");
   // let [authUrl, isAuth, steps, latestHR, totalCal] = useData()._3;
-  let [steps, latestHR, totalCal] = useData2(refreshToken)._3;
   // console.log("in monitor", isAuth);
   // const [steps2, setSteps] = useState(steps);
   // const [latestHR2, setLatestHR] = useState(latestHR);
-  const [steps2, setSteps] = useState();
-  const [latestHR2, setLatestHR] = useState();
-
+  const [steps2, setSteps2] = useState(0);
+  const [latestHR2, setLatestHR2] = useState(0);
+  const [totalCal2, setTotalCal2] = useState(0);
+  
   // let[TestTime] = useData()._4;
   // console.log('Testtime,', TestTime);
   const [activeTab, setActiveTab] = useState("Monitor");
@@ -113,9 +114,12 @@ export default function Monitor({ navigation }) {
   const [isRT, setIsRT] = useState(false);
   // const [isInCloud, setisInCloud] = useState(false);
   const [refreshToken, setRefreshToken] = useState('');
-  // var refreshToken = '';
+  let [steps, latestHR, totalCal] = useData2(refreshToken)._3;
+  // var refreshToken = "";
   var isInCloud = false;
   let authUrl; // authUrl 2.0
+  // var alertIsVisible = false;
+  const alertIsVisible = useRef(false); 
   // console.log("authurl=", authUrl);
   // // const [renderData, setRenderData] = useState(false);
 
@@ -136,9 +140,11 @@ export default function Monitor({ navigation }) {
           isInCloud = true;
           console.log("isInCloud", isInCloud);
           fitApi.removeRT();
+          alertIsVisible.current = true; // Alert no need to be visible
         })
         .catch((e) => {
           console.log("err in put", e);
+          alertIsVisible.current = false; // Alert need to be visible
         });
       console.log("uploading refresh token");
     }
@@ -164,10 +170,10 @@ export default function Monitor({ navigation }) {
           } else {
             console.log("has refreshtoken");
             isInCloud = true;
-            console.log('Refresh token from cloud:', tokensData.refreshToken);
+            console.log("Refresh token from cloud:", tokensData.refreshToken);
             // refreshToken = tokensData.refreshToken;
             setRefreshToken(tokensData.refreshToken);
-            console.log('refreshtoken = ', refreshToken);
+            console.log("refreshtoken = ", refreshToken);
             console.log("isInCloud", isInCloud);
             return true;
           }
@@ -192,12 +198,43 @@ export default function Monitor({ navigation }) {
       .then((response) => response.json())
       .then((data) => {
         authUrl = data.url;
-        console.log("AuthUrl:", authUrl);
+        // console.log("AuthUrl:", authUrl);
       })
       .catch((error) => {
         console.log("Error:", error);
       });
   }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        console.log("fetchdata ing");
+        // refreshToken not equal '' and not undefined
+        if (refreshToken !== "" && refreshToken !== undefined) {
+          console.log('RefreshToken is now:', refreshToken);
+          // useData2(refreshToken);
+          // .then(() => {
+          readFile().then((data) => {
+            console.log("data", data);
+            setSteps2(data[0]);
+            setLatestHR2(data[1]);
+            setTotalCal2(data[2]);
+          });
+          // });
+        }
+
+        // console.log("Data:", data);
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    };
+
+    const interval = setInterval(fetchData, 10000); // Call fetchData every 10 seconds
+
+    return () => {
+      clearInterval(interval); // Clean up the interval when the component unmounts
+    };
+  }, [refreshToken]); // Empty depende
 
   // // New ultimate useeffect
   useEffect(() => {
@@ -208,16 +245,29 @@ export default function Monitor({ navigation }) {
       ) {
         console.log("App has come to the foreground!");
         await getRTFromFitApi(); // Wait for getRT() to complete before proceeding
+        console.log('alertIsVisible', alertIsVisible.current);
         // function1(); // Call function1 after getRT() finishes
       }
-  
+
       appState.current = nextAppState;
       setAppStateVisible(appState.current);
       console.log("AppState", appState.current);
     };
-  
-    const subscription = AppState.addEventListener("change", handleAppStateChange);
-  //   // function1();
+
+    const subscription = AppState.addEventListener(
+      "change",
+      handleAppStateChange
+    );
+    //   // function1();
+    
+    return () => {
+      subscription.remove();
+      console.log("subscription.remove()");
+    };
+  });
+
+
+  useEffect(() => {
     const rtExist = async () => {
       if (isInCloud === false) {
         let rt = await checkRT();
@@ -231,44 +281,56 @@ export default function Monitor({ navigation }) {
         console.log("isInCloud", isInCloud);
         if (isInCloud === false) {
           console.log("monitor useeefect authurl:", authUrl);
-          Alert.alert(
-            "Google Fit Data Access Permission",
-            "To continue, you need to allow access to your Google Fit data.",
-            [
-              {
-                text: "OK",
-                onPress: () => {
-                  console.log("OK Pressed");
-                  // openAuthUrl(authUrl2);
-                  openAuthUrl(authUrl);
-                  // isAuth = true;
+          if (alertIsVisible.current === false) {
+            alertIsVisible.current = true;  // When alertIsVisible is true, no need to pop out new alert
+            Alert.alert(
+              "Google Fit Data Access Permission",
+              "To continue, you need to allow access to your Google Fit data.",
+              [
+                {
+                  text: "OK",
+                  onPress: () => {
+                    console.log("OK Pressed");
+                    alertIsVisible.current = true;
+                    // openAuthUrl(authUrl2);
+                    openAuthUrl(authUrl);
+                    // isAuth = true;
+                  },
                 },
-              },
-              {
-                text: "No",
-                onPress: () => {
-                  console.log("No Pressed");
-                  // setisInCloud(true);
-                  isInCloud = true;
-                  // isAuth = false;
+                {
+                  text: "No",
+                  onPress: () => {
+                    console.log("No Pressed");
+                    alertIsVisible.current = false;
+                    // setisInCloud(true);
+                    isInCloud = true;
+                    // isAuth = false;
+                  },
                 },
-              },
-            ],
-            { cancelable: true }
-          );
+              ],
+              { cancelable: true,
+                onDismiss: () => {
+                  console.log("Alert dismissed");
+                  alertIsVisible.current = false;
+                  // Handle cancel action here
+                },
+              }
+            );
+          }
+          
         }
       } catch (err) {
         console.log("err in useEffect", err);
       }
     };
 
-    promptToUrl();
-    return () => {
-      subscription.remove();
-      console.log('subscription.remove()');
-    };
-  });
+    // promptToUrl();
+    const interval = setInterval(promptToUrl, 8000); // Call fetchData every 10 seconds
 
+    return () => {
+      clearInterval(interval); // Clean up the interval when the component unmounts
+    };
+  })
   // Detect app state changes
   // useEffect(() => {
   //   const subscription = AppState.addEventListener("change", (nextAppState) => {
@@ -290,7 +352,6 @@ export default function Monitor({ navigation }) {
   //     subscription.remove();
   //   };
   // }, []);
- 
 
   // Alert user to allow access to Google Fit data
   // useEffect(() => {
@@ -368,7 +429,7 @@ export default function Monitor({ navigation }) {
 
   //   // setRenderData(false);
   // }, [isAuth, authUrl]);
-   // Retrieve data from csv file
+  // Retrieve data from csv file
   // useEffect(() => {
   //   async function fetchData() {
   //     console.log("Start Readfile in monitor:");
@@ -401,10 +462,10 @@ export default function Monitor({ navigation }) {
       {/* <ConditionsBar /> */}
       {/* <Text>{dataValue}</Text>
       <Text>{steps}</Text> */}
-      <DataCard dataType={"Steps"} dataValue={steps} />
+      <DataCard dataType={"Steps"} dataValue={steps2} />
       {/* <DataCard dataType={"Steps"} dataValue={steps2} /> */}
-      <DataCard dataType={"Calorie"} dataValue={totalCal} />
-      <DataCard dataType={"Heart Rate"} dataValue={latestHR} />
+      <DataCard dataType={"Calorie"} dataValue={totalCal2} />
+      <DataCard dataType={"Heart Rate"} dataValue={latestHR2} />
       {/* <DataCard dataType={"Heart Rate"} dataValue={latestHR2} /> */}
 
       {/* <DataCard dataType={"SpO2"} dataValue={"0 "} /> */}

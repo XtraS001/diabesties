@@ -163,6 +163,7 @@ export const readFile = async () => {
   let var2 = "";
   let var3 = "";
   let var4 = "";
+  let var5 = "";
 
   const filePath = RNFS.DocumentDirectoryPath + "/data.csv";
   try {
@@ -173,30 +174,31 @@ export const readFile = async () => {
 
       if (contents === undefined) {
         console.log("contents is undefined");
-        return [var1, var2, var3, var4];
+        return [var1, var2, var3, var4, var5];
       } else {
         console.log("contents is not undefined");
         const rows = contents.split("\n");
         const secondRow = rows[1];
 
-        const [varA, varB, varC, varD] = secondRow.split(", ");
+        const [varA, varB, varC, varD, varE] = secondRow.split(", ");
 
         var1 = varA;
         var2 = varB;
         var3 = varC;
         var4 = varD;
+        var5 = varE;
       }
     });
     console.log("finish reafile3");
-    return [var1, var2, var3, var4];
+    return [var1, var2, var3, var4, var5];
   } catch (err) {
     console.log("readFile error", err);
   }
-  return [var1, var2, var3, var4];
+  return [var1, var2, var3, var4, var5];
 };
 
 //waixuan code + GCSV 2.0
-const generateCSVContent = async (variable1, variable2, hour, minute) => {
+const generateCSVContent = async (variable1, variable2, variable3, hour, minute) => {
   // let [var10, var7, var8, var9] = readFile3()._3;
   const filePath = RNFS.DocumentDirectoryPath + "/data.csv";
   try {
@@ -210,7 +212,7 @@ const generateCSVContent = async (variable1, variable2, hour, minute) => {
       let readArray = [...arr];
       console.log("readArray", readArray);
       //let readArray = [...readFile2()._3];
-      const inputArray = [variable1, variable2, hour, minute];
+      const inputArray = [variable1, variable2, variable3, hour, minute];
       console.log("inputArray", inputArray);
       console.log("24", readArray[3]);
       // checkVariable(readArray[3]);
@@ -228,13 +230,13 @@ const generateCSVContent = async (variable1, variable2, hour, minute) => {
           inputData[i] = inputArray[i];
         }
       }
-      const headers = "Steps, Latest Heart Rate, hours, minutes\n";
-      const row = `${inputData[0]}, ${inputData[1]}, ${inputData[2]}, ${inputData[3]},\n`;
+      const headers = "Steps, Latest Heart Rate, Calories, hours, minutes\n";
+      const row = `${inputData[0]}, ${inputData[1]}, ${inputData[2]}, ${inputData[3]}, ${inputData[4]},\n`;
       console.log("Generate csv content success");
       return headers + row;
     } else {
-      const headers = "Steps, Latest Heart Rate, hours, minutes\n";
-      const row = `${variable1}, ${variable2}, ${hour}, ${minute},\n`;
+      const headers = "Steps, Latest Heart Rate, Calories, hours, minutes\n";
+      const row = `${variable1}, ${variable2}, ${variable3}, ${hour}, ${minute},\n`;
       console.log("File not exist");
       console.log("Generate csv content success");
       return headers + row;
@@ -248,7 +250,7 @@ const generateCSVContent = async (variable1, variable2, hour, minute) => {
 
 //WF2 2.0 + WF 2.0
 // const writeFile2 = async (var1, var2) => {
-export const writeFile = async (var1, var2) => {
+export const writeFile = async (var1, var2, var3) => {
   const currentTime = new Date();
   const hours = currentTime.getHours();
   const minutes = currentTime.getMinutes();
@@ -257,7 +259,7 @@ export const writeFile = async (var1, var2) => {
 
   try {
     //Create Content
-    const csvContent = await generateCSVContent(var1, var2, hours, minutes);
+    const csvContent = await generateCSVContent(var1, var2, var3, hours, minutes);
     console.log("csvContent", csvContent);
     const filePath = RNFS.DocumentDirectoryPath + "/data.csv";
 
