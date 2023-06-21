@@ -40,14 +40,14 @@ export default function BottomTabs({ navigation }, props) {
           // justifyContent: "center", //x-axis
         }}
       >
-        {/* <Icon
+        <Icon
           icon="home-outline"
           text="Home"
           navigation={navigation}
           navigateTo="Home"
           activeTab={props.activeTab }
           setActiveTab={props.setActiveTab}
-        /> */}
+        />
         <Icon
           // icon="bar-chart-outline"
           icon="home-outline"

@@ -159,7 +159,7 @@ export default function Monitor({ navigation }) {
       await API.get("tokensApi", "/tokens/object/userId", {})
         .then((tokenRes) => {
           // Handle the response or perform additional actions after inserting multiple objects
-          console.log("tokenRes", tokenRes);
+          console.log("checking rt tokenRes", tokenRes);
           tokensData = tokenRes;
           // console.log("tokensData", tokensData);
           // if tokensData has no refreshtoken, then get new token
@@ -201,7 +201,7 @@ export default function Monitor({ navigation }) {
         // console.log("AuthUrl:", authUrl);
       })
       .catch((error) => {
-        console.log("Error:", error);
+        console.log("Error getting authrul in monitor:", error);
       });
   }, []);
 
@@ -269,17 +269,22 @@ export default function Monitor({ navigation }) {
 
   useEffect(() => {
     const rtExist = async () => {
-      if (isInCloud === false) {
-        let rt = await checkRT();
-        return rt;
+      try{
+        if (isInCloud === false) {
+          let rt = await checkRT();
+          return rt;
+        }
+      }catch(e){
+        console.log("rtexist err:", e);
       }
+      
     };
 
     const promptToUrl = async () => {
       await rtExist();
       try {
         console.log("isInCloud", isInCloud);
-        if (isInCloud === false) {
+        if (isInCloud === false && authUrl.length > 0) {
           console.log("monitor useeefect authurl:", authUrl);
           if (alertIsVisible.current === false) {
             alertIsVisible.current = true;  // When alertIsVisible is true, no need to pop out new alert
